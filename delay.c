@@ -36,7 +36,10 @@ void delay_1ms(void) {
 }
 
 void delay_nms(uint32_t n) {
-	while (n--) {
-		delay_1ms();
+//	while (n--) {
+//		delay_1ms();
+//	}
+	sysTickCounter = n;
+	while (sysTickCounter != 0) {
 	}
 }
