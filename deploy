@@ -1,3 +1,10 @@
 #!/bin/bash
 
-openocd -f /usr/local/share/openocd/scripts/board/st_nucleo_f401re.cfg -f flash.cfg
+#openocd -f /usr/local/share/openocd/scripts/board/st_nucleo_f401re.cfg -f flash.cfg
+
+# sudo openocd -f /usr/local/share/openocd/scripts/board/st_nucleo_f401re.cfg
+# reset halt
+# flash write_image erase ./debug/main.hex
+# reset run
+
+openocd -f /usr/local/share/openocd/scripts/board/st_nucleo_f401re.cfg -f flash.cfg -c "stm_flash ./debug/main.hex" -c shutdown
