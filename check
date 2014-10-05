@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/opt/codebench/bin/arm-none-eabi-size ./debug/main.elf
+/opt/codebench/bin/arm-none-eabi-objdump -S ./debug/main.elf>./debug/main.lss
