@@ -1,5 +1,6 @@
-CC=arm-none-eabi-gcc
-AS=arm-none-eabi-as
+CC=/opt/codebench/bin/arm-none-eabi-gcc
+AS=/opt/codebench/bin/arm-none-eabi-as
+OBJCPY=/opt/codebench/bin/arm-none-eabi-objcopy
 
 PROJNAME=main
 
@@ -8,10 +9,11 @@ IDIR2=../../libs/stm32-cube-f4/Drivers/CMSIS/Include
 DEBUGDIR=./debug/
 LDIR=../../libs/stm32-cube-f4/Projects/STM32F401RE-Nucleo/Templates/TrueSTUDIO/STM32F4xx-Nucleo/
 ASMDIR=./system/
-CFLAGS=-Wall -mcpu=cortex-m4 -mlittle-endian -mthumb -mthumb-interwork -DSTM32F401xE -I$(IDIR1) -I$(IDIR2)
-LDFLAGS=-Wl,--gc-sections -Wl,-Map=$(DEBUGDIR)$(PROJNAME).map
 
+CFLAGS=-Wall -mcpu=cortex-m4 -mlittle-endian -mthumb -mthumb-interwork -DSTM32F401xE -I$(IDIR1) -I$(IDIR2)
 CFLAGS+=-g
+LDFLAGS=-Wl,--gc-sections -Wl,-Map=$(DEBUGDIR)$(PROJNAME).map
+OCFLAGS=-Oihex
 
 LIB=STM32F401CE_FLASH.ld
 
@@ -23,8 +25,7 @@ OBJECTS=system_stm32f4xx.o main.o delay.o $(ASMDIR)startup_stm32f401xe.o
 
 EXECUTABLE=$(PROJNAME).elf
 
-OBJCPY=arm-none-eabi-objcopy
-OCFLAGS=-Oihex
+
 HEX=$(PROJNAME).hex
 
 OPENOCD_PROC_FILE=flash.cfg
